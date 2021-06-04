@@ -53,7 +53,13 @@ export default class ObsidianReadwisePlugin extends Plugin {
         });
 
 		if (this.settings.syncOnBoot) {
-			await this.syncReadwise(this.settings.lastUpdate);
+            if (this.settings.syncAllHighlightsOnFirstSync) {
+                await this.syncReadwise(this.settings.lastUpdate);
+                this.settings.syncAllHighlightsOnFirstSync = false;
+                await this.saveSettings();
+            } else {
+                await this.syncReadwise(this.settings.lastUpdate);
+            }
 		}
 
         if (this.settings.autoSyncInterval > 0) {
