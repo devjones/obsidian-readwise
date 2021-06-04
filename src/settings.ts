@@ -1,5 +1,6 @@
 export interface ObsidianReadwiseSettings {
     syncOnBoot: boolean;
+    syncAllHighlightsOnFirstSync: boolean;
     autoSyncInterval: number;
     lastUpdate: number;
 	disableNotifications: boolean;
@@ -17,6 +18,7 @@ export class ObsidianReadwiseSettingsGenerator {
     static defaultSettings(): ObsidianReadwiseSettings {
         return {
             syncOnBoot: false,
+            syncAllHighlightsOnFirstSync: true,
             autoSyncInterval: 0,
             disableNotifications: false,
             headerTemplatePath: "",

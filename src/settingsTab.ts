@@ -71,6 +71,19 @@ export class ObsidianReadwiseSettingsTab extends PluginSettingTab {
             }));
     }
 
+    syncAllHighlightsOnFirstSync() {
+        new Setting(this.containerEl)
+            .setName('Sync All Highlights On Initial Load')
+            .setDesc('Sync All Highlights On Initial Load')
+            .addToggle(toggle => toggle
+                .setValue(this.plugin.settings.syncAllHighlightsOnFirstSync)
+                .onChange(async (value) => {
+                    this.plugin.settings.syncAllHighlightsOnFirstSync = value;
+                    await this.plugin.saveSettings();
+            }))
+            .setDisabled(!this.plugin.settings.syncAllHighlightsOnFirstSync);
+    }
+
     highlightStoragePath() {
         new Setting(this.containerEl)
         .setName('Highlight storage path')
